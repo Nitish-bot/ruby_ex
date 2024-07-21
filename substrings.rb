@@ -1,5 +1,5 @@
 def substrings(words, dict)
-  word_array = words.split(" ")
+  word_array = words.downcase.split(" ")
   #we got an array of words
   # now we check for the full word in dict
   # next we check for substrings of the word in dict
@@ -7,7 +7,7 @@ def substrings(words, dict)
   word_array.each do |word|
     for j in 0...word.length
       for i in 1..word.length
-        curword = word[j, i].downcase
+        curword = word[j, i]
         if dict.include?(curword)
           result[curword] += 1
         end
