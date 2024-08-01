@@ -10,3 +10,5 @@ class PlayGame
     self.game = Mastermind.new
   end
 end
+
+PlayGame.new()
