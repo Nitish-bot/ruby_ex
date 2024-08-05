@@ -19,6 +19,18 @@ class Mastermind
     end
   end
 
+  def play
+    guess = take_guess
+    result = check(guess)
+    if result[0] == 1
+      self.solved = true
+      puts 'Congratulations you have solved this shii'
+    else
+      puts "You have #{result[1]} elements in the correct place"
+      puts "and #{result[2]} elements in the incorrect place\n"
+    end
+  end
+
   def check(guess)
     result = [0, 0, 0]
     chk = secret_code.dup
