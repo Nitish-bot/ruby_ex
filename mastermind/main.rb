@@ -11,4 +11,4 @@ class PlayGame
   end
 end
 
-PlayGame.new()
+PlayGame.new

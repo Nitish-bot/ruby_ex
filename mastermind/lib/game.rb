@@ -2,14 +2,14 @@
 
 # This class defines the game
 class Mastermind
-  attr_accessor :secret_code
+  attr_accessor :secret_code, :solved
 
   ELEMENTS = %w[1 2 3 4 5 6].freeze
 
   def initialize
     rand_code
-    turn = take_guess
-    analyze(turn)
+    self.solved = false
+    play until solved
   end
 
   def rand_code
@@ -17,23 +17,29 @@ class Mastermind
     4.times do
       secret_code.push(ELEMENTS.sample)
     end
-    p secret_code
   end
 
-  def analyze(code)
+  def check(guess)
+    result = [0, 0, 0]
     chk = secret_code.dup
-    result = [0, 0]
+    if !chk.eql?(guess)
+      analyze(chk, guess, result)
+    else
+      result[0] = 1
+    end
+    result
+  end
+
+  def analyze(chk, code, result)
     code.each_with_index do |element, index|
-      p chk, code
       if chk[index] == element
-        result[0] += 1
+        result[1] += 1
         code[index] = chk[index] = nil
       elsif chk.include?(element)
-        result[1] += 1
+        result[2] += 1
         code[code.index(element)] = chk[chk.index(element)] = nil
       end
     end
-    p result
   end
 
   def take_guess
