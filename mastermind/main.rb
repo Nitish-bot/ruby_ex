@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'lib/checker'
 require_relative 'lib/game'
 require_relative 'lib/computer'
 
