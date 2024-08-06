@@ -40,6 +40,3 @@ class Mastermind
     gets.chomp.split('')
   end
 end
-
-# 1224
-# 2335

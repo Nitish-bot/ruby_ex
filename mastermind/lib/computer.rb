@@ -2,18 +2,25 @@
 
 # This class defines logic for computer to guess
 class Computer
-  attr_accessor :started, :set
+  include Checker
 
-  def initialize
+  attr_accessor :started, :set, :result
+
+  def initialize(secret_c)
+    self.secret = secret_c
     self.started = false
     set = (1..6).to_a.repeated_permutation(4).to_a
   end
 
-  def play
+  def playc
     if !started
-      return ['1', '1', '2', '2']
+      self.result = check(%w[1 1 2 2])
     else
-
+      remove
     end
+  end
+
+  def remove
+    self.set = set.select { |guess| check(guess) == result }
   end
 end
